@@ -1,0 +1,22 @@
+<% provide(:title, 'Summaries')%>
+<h1>Summaries</h1>
+<%= link_to 'Create New', new_summary_path %>
+<table class="table table-striped">
+  <tr>
+    <th>Name&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   </th>
+    <th>ID&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   </th>
+    <th>Description&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   </th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @summaries.each do |summary| %>
+    <tr>
+      <td><%= summary.name %></td>
+      <td><%= summary.id %></td>
+      <td><%= summary.description %></td>
+     
+      <td><%= link_to 'Edit', edit_summary_path(summary) %></td>
+      <td><%= link_to 'Show', display_summary_path(summary) %></td>
+    </tr>
+  <% end %>
+</table>
