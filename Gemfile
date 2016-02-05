@@ -18,6 +18,7 @@ gem 'fog'        ,  '1.26.0'
 gem 'will_paginate', '~> 3.0.4'
 gem 'bootstrap-will_paginate', '0.0.10'
 gem 'net-ssh'
+gem 'email_verifier'
 
 group :development, :test do
   gem 'byebug',      '3.4.0'

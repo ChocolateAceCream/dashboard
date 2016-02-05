@@ -30,8 +30,12 @@ User.create!(name:  "Admin",
 end
 
 10.times do |n|
-    name = Faker::Name.name
+    name = 'Google'
     description = "none"
+    ping = 0
+    ip = "72.14.192.#{n}"
     Site.create!(name: name,
-                 description: description)
+                 description: description,
+                 ping:       ping,
+                 ip:     ip)
 end

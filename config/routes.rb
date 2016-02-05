@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'password_resets/new'
+    get 'password_resets/new'
 
-  get 'password_resets/edit'
+    get 'password_resets/edit'
 
-  get 'sessions/new'
+    get 'sessions/new'
 
     get 'users/new'
 
@@ -19,12 +19,19 @@ Rails.application.routes.draw do
     get 'sites'    => 'sites#index'
     get 'login'     => 'sessions#new'
 
-
     post 'login'   => 'sessions#create'
     delete 'logout' => 'sessions#destroy'
+
+    # api
+namespace :api, :defaults => {:format => :json} do
+  namespace :v1 do
+    resources :sites
+  end
+end
+
     resources     :users
-    resources     :summaries          
-    resources     :sites  
+    resources     :summaries
+    resources     :sites            
     resources     :account_activations, only: [:edit]
     resources     :password_resets,     only: [:new, :create, :edit, :update ]
     resources     :microposts,          only: [:create, :destroy]
