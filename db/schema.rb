@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205195003) do
+ActiveRecord::Schema.define(version: 20160206201141) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,13 +30,21 @@ ActiveRecord::Schema.define(version: 20160205195003) do
     t.integer "summary_id"
   end
 
+  create_table "sites_users", force: :cascade do |t|
+    t.integer "site_id"
+    t.integer "user_id"
+  end
+
   create_table "summaries", force: :cascade do |t|
     t.string   "name"
-    t.integer  "site_id"
     t.text     "description"
-    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "summaries_users", force: :cascade do |t|
+    t.integer "summary_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,7 +60,6 @@ ActiveRecord::Schema.define(version: 20160205195003) do
     t.datetime "activated_at"
     t.string   "reset_digest"
     t.datetime "reset_sent_at"
-    t.integer  "summary_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

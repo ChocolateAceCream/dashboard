@@ -1,8 +1,5 @@
 class User < ActiveRecord::Base
-    has_many    :summaries,
-                class_name: "summaries",
-                foreign_key: "id", primary_key: "summary_id", dependent: :destroy
-
+    has_and_belongs_to_many :summaries
     attr_accessor :remember_token, :activation_token, :reset_token
     before_save         :downcase_email
     before_create       :create_activation_digest

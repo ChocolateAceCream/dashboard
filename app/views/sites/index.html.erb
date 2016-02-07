@@ -1,6 +1,9 @@
 <% provide(:title, 'All Sites')%>
 <h1>All Sites</h1>
-<%= link_to 'New Sites', new_site_path %>
+<% if current_user.admin?  %>
+  <%= link_to 'New Sites', new_site_path %>
+<% end %>
+
 <table class="table table-striped">
   <tr>
     <th>id&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp   </th>
@@ -21,7 +24,12 @@
       <td><%= site.ping %></td>   
       <td><%= site.ip %></td>   
       <td><%= time_ago_in_words(site.updated_at) %></td>
-      <td><%= link_to 'Edit', edit_site_path(site) %></td>
+
+      <% if current_user.admin?  %>
+          <td><%= link_to 'Edit', edit_site_path(site) %></td>
+          <td><%= link_to "delete", site, method: :delete, data: { confirm: "You sure?" } %></td>
+      <% end %>   
+
     </tr>
   <% end %>
 </table>
