@@ -15,8 +15,10 @@ Rails.application.routes.draw do
     get 'summaries'    => 'summaries#index'
     get 'summaries/:id/display' => 'summaries#display', as: 'display_summary'
     get 'sites/:id/display' => 'sites#display', as: 'display_site'
+    get 'emails/:id/display' => 'emails#display', as: 'display_email'
     
     get 'sites'    => 'sites#index'
+    get 'emails'    => 'emails#index'
     get 'login'     => 'sessions#new'
 
     post 'login'   => 'sessions#create'
@@ -26,12 +28,14 @@ Rails.application.routes.draw do
 namespace :api, :defaults => {:format => :json} do
   namespace :v1 do
     resources :sites
+    resources :emails
   end
 end
 
     resources     :users
     resources     :summaries
     resources     :sites            
+    resources     :emails    
     resources     :account_activations, only: [:edit]
     resources     :password_resets,     only: [:new, :create, :edit, :update ]
     resources     :microposts,          only: [:create, :destroy]

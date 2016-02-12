@@ -13,12 +13,18 @@ class SummariesController < ApplicationController
 		@summary = Summary.new
 		@user = current_user
 		@sites = Site.all
+		@emails = Email.all
 	end
 
 	def create
 		@summary = Summary.new(summary_params)
+
 		@sites = Site.where(:id => params[:selected_site])
 		@summary.sites << @sites
+
+		@emails = Email.where(:id => params[:selected_email])
+		@summary.emails << @emails
+
 		@users = User.where(:id => params[:selected_user])
 		@summary.users << @users
 		if @summary.save        	
@@ -36,9 +42,14 @@ class SummariesController < ApplicationController
 
 	def update
 		@summary = Summary.find(params[:id])
+
 		@sites = Site.where(:id => params[:selected_site])
 		@summary.sites.destroy_all
 		@summary.sites << @sites
+
+		@emails = Email.where(:id => params[:selected_email])
+		@summary.emails.destroy_all
+		@summary.emails << @emails
 
 		@users = User.where(:id => params[:selected_user])
 		@summary.users.destroy_all
@@ -55,6 +66,7 @@ class SummariesController < ApplicationController
 	def display
         @summary = Summary.find(params[:id])
         @sites = @summary.sites
+        @emails = @summary.emails
 
     end
 

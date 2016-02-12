@@ -39,3 +39,21 @@ end
                  ping:       ping,
                  ip:     ip)
 end
+
+Email.create!(  server_name: "hotmail.com",
+                imap:   "imap-mail.outlook.com",
+                imap_port: 993,  
+                smtp:   "smtp.live.com",
+                smtp_port: 587,
+                account_name: "tester.kalki@hotmail.com",
+                account_password: "foobar123"
+              )
+
+Email.create!(  server_name: "gmail.com",
+                imap:   "imap.gmail.com",
+                imap_port: 993,
+                smtp:   "smtp.gmail.com",
+                smtp_port: 587,
+                account_name: "tester.kalki@gmail.com",
+                account_password: "foobar123"
+              )
